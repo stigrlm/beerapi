@@ -2,18 +2,27 @@ version: "3.8"
 
 services:
 
-  beerapi:
+  beerapi_server:
     build:
       context: .
-      args:
-        user: martin
-        uid: 1000
     image: beerapi:latest
-    container_name: beerapi
+    container_name: beerapi_server
     volumes:
       - ./beerapi:/beerapi
     ports:
       - "8000:8000"
+    depends_on: 
+      - mysql_db
+
+  beerapi_utility:
+    build:
+      context: .
+    image: beerapi:latest
+    container_name: beerapi_utility
+    volumes:
+      - ./beerapi:/beerapi
+    depends_on:
+      - mysql_db
 
   mysql_db:
     image: mysql:latest
@@ -22,13 +31,9 @@ services:
      - "3306:3306"
     volumes:
      - ./mysql_data:/var/lib/mysql
+     - ./init.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
       MYSQL_DATABASE: beerapi
       MYSQL_ROOT_PASSWORD: heslo
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-
-
-networks:
-  beerapi:
-    driver: bridge
