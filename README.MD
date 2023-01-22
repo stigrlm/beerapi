@@ -3,8 +3,10 @@
 Sample RESTFUL JSON API providing access to beer ratings as provided on external api source https://api.sampleapis.com/beers/stouts.
 
 API has exposed following endpoints:
-/api/beer
+1. /api/beer
 - GET, POST, PUT, DELETE
+1. /api/beers
+- GET
 
 ## How to run the project
 
