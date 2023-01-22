@@ -17,6 +17,7 @@ services:
   beerapi_utility:
     build:
       context: .
+    command: -d -t
     image: beerapi:latest
     container_name: beerapi_utility
     volumes:

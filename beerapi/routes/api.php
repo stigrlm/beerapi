@@ -22,3 +22,4 @@ Route::get('beer/{id}', 'App\Http\Controllers\BeerController@show');
 Route::post('beer', 'App\Http\Controllers\BeerController@store');
 Route::put('beer/{id}', 'App\Http\Controllers\BeerController@update');
 Route::delete('beer/{id}', 'App\Http\Controllers\BeerController@destroy');
+Route::get('beers', 'App\Http\Controllers\BeerController@list');

@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Beer extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'name', 'price', 'rating_avg', 'reviews', 'image'];
+
+    public $timestamps = false;
+
+    protected $fillable = ['name', 'price', 'rating_avg', 'reviews', 'image'];
 }
