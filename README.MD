@@ -23,10 +23,11 @@ All database data is persisted via volume in `mysql_data` folder in project root
 
 ### Steps to run:
 1. cd into project root directory - where docker-compose.yaml is located
+1. Change `user` and `uid` in `docker-compose.yaml` to match your local user
 1. Build the images: `docker-compose build`
 1. Run the the containers: `docker-compose up`
 1. Wait until containers are up and running - watch for possible exit code messages on the console or use `docker ps` command to verify all containers are running
-1. Run following artisan commands to set up database, since it is running in docker, you need to invoke the commands from the container:
+1. Run following artisan commands for initial application and database setup, since it is running in docker, you need to invoke the commands from the container:
     - `docker exec -it beerapi_utility php artisan migrate` - create migration for beerapi database
     - `docker exec -it beerapi_utility php artisan migrate --env=testing` - create migration for beerapi_testing database
 

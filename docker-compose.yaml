@@ -5,23 +5,24 @@ services:
   beerapi_server:
     build:
       context: .
+      args:
+        user: martin
+        uid: 1000
     image: beerapi:latest
     container_name: beerapi_server
-    volumes:
-      - ./beerapi:/beerapi
+    # volumes:
+    #   - ./beerapi:/beerapi
     ports:
       - "8000:8000"
     depends_on: 
       - mysql_db
 
   beerapi_utility:
-    build:
-      context: .
     command: -d -t
     image: beerapi:latest
     container_name: beerapi_utility
-    volumes:
-      - ./beerapi:/beerapi
+    # volumes:
+    #   - ./beerapi:/beerapi
     depends_on:
       - mysql_db
 
