@@ -23,7 +23,7 @@ All database data is persisted via volume in `mysql_data` folder in project root
 
 ### Steps to run:
 1. cd into project root directory - where docker-compose.yaml is located
-1. Change `user` and `uid` in `docker-compose.yaml` to match your local user
+1. Change `user` and `uid` in `docker-compose.yaml` to match your local user - so  that artisan and migrate commands are run as if it were on local machine
 1. Build the images: `docker-compose build`
 1. Run the the containers: `docker-compose up`
 1. Wait until containers are up and running - watch for possible exit code messages on the console or use `docker ps` command to verify all containers are running
@@ -32,6 +32,8 @@ All database data is persisted via volume in `mysql_data` folder in project root
     - `docker exec -it beerapi_utility php artisan migrate --env=testing` - create migration for beerapi_testing database
 
 Its also possible to attach to the container shell via `docker exec -it beerapi_utility bash` and then run just artisan commands as if it were on your local machine.
+
+By default volumes for source codes are commented out in `docker-compose.yaml`, if you wish to enable it and take advantage of instant reflection of code changes into containers, you have to run command `docker exec -it beerapi_utility php composer install` for the first time. Thats because vendor directory is not part of source control and mounting volume would overwrite data that was previously created during build stage.
 
 ### Additonal functionality and commands:
 - run test suite: `docker exec -it beerapi_utility php artisan test`
